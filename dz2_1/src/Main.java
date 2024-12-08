@@ -2,22 +2,18 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        CreateAnimalServiceImpl createService = new CreateAnimalServiceImpl();
-        SearchServiceImpl searchService = new SearchServiceImpl();
+        CreateAnimalServiceImpl animalService = new CreateAnimalServiceImpl();
 
-        // Создание 10 животных
-        List<AbstractAnimal> animals = createService.createAnimals();
-        animals.forEach(System.out::println);
+        // Создание 10 животных с помощью while
+        List<AbstractAnimal> animalsDefault = animalService.createDefaultAnimals();
+        animalsDefault.forEach(System.out::println);
 
-        // Поиск имен животных, рожденных в високосный год
-        List<String> leapYearNames = searchService.findLeapYearNames(animals);
-        System.out.println("Животные, рожденные в високосный год: " + leapYearNames);
+        // Создание N животных с помощью for (с Dog и Shark)
+        List<AbstractAnimal> animalsFor = animalService.createAnimals(6);
+        animalsFor.forEach(System.out::println);
 
-        // Поиск животных старше 5 лет
-        List<AbstractAnimal> olderAnimals = searchService.findOlderAnimal(animals, 5);
-        System.out.println("Животные старше 5 лет: " + olderAnimals);
-
-        // Поиск дубликатов
-        searchService.findDuplicate(animals);
+        // Создание N животных с помощью do-while (с Wolf и Shark)
+        List<AbstractAnimal> animalsDoWhile = animalService.createAnimalsDoWhile(4);
+        animalsDoWhile.forEach(System.out::println);
     }
 }

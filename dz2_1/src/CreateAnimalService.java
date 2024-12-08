@@ -4,28 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Интерфейс для создания животных.
- */
 public interface CreateAnimalService {
-    /**
-     * Метод для создания 10 уникальных животных.
-     * @return Список животных.
-     */
-    default List<AbstractAnimal> createAnimals() {
+    default List<AbstractAnimal> createDefaultAnimals() {
         List<AbstractAnimal> animals = new ArrayList<>();
-        int count = 0;
-        while (count < 10) {
-            animals.add(generateAnimal());
-            count++;
+        Random random = new Random();
+
+        int i = 0;
+        while (i < 10) {
+            animals.add(new Dog("Dog" + i, random.nextDouble(50, 150), "Friendly",
+                    LocalDate.of(2019, Month.JANUARY, random.nextInt(1, 28))));
+            i++;
         }
+
+
+        System.out.println("10 животных созданы с помощью while.");
         return animals;
     }
 
-    /**
-     * Генерация одного животного.
-     * @return Новый объект животного.
-     */
-    AbstractAnimal generateAnimal();
+    List<AbstractAnimal> createAnimals(int n);
 }
-

@@ -1,17 +1,13 @@
 import java.time.LocalDate;
-/**
- * Абстрактный класс AbstractAnimal.
- * Содержит основные поля и методы для всех животных.
- */
-public abstract class AbstractAnimal implements Animal {
-    protected String breed;       // Порода
-    protected String name;        // Имя
-    protected Double cost;        // Цена
-    protected String character;   // Характер
-    protected LocalDate birthDate; // Дата рождения
 
-    // Конструктор
-    public AbstractAnimal(String breed, String name, Double cost, String character, LocalDate birthDate) {
+public abstract class AbstractAnimal implements Animal {
+    protected String breed;      // порода
+    protected String name;       // имя
+    protected double cost;       // цена
+    protected String character;  // характер
+    protected LocalDate birthDate; // дата рождения
+
+    public AbstractAnimal(String breed, String name, double cost, String character, LocalDate birthDate) {
         this.breed = breed;
         this.name = name;
         this.cost = cost;
@@ -19,7 +15,6 @@ public abstract class AbstractAnimal implements Animal {
         this.birthDate = birthDate;
     }
 
-    // Реализация интерфейса Animal
     @Override
     public String getBreed() {
         return breed;
@@ -31,7 +26,7 @@ public abstract class AbstractAnimal implements Animal {
     }
 
     @Override
-    public Double getCost() {
+    public double getCost() {
         return cost;
     }
 
@@ -40,12 +35,10 @@ public abstract class AbstractAnimal implements Animal {
         return character;
     }
 
-    @Override
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    // Переопределение equals
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -53,10 +46,17 @@ public abstract class AbstractAnimal implements Animal {
 
         AbstractAnimal that = (AbstractAnimal) obj;
 
-        return breed.equals(that.breed) &&
+        return Double.compare(that.cost, cost) == 0 &&
+                breed.equals(that.breed) &&
                 name.equals(that.name) &&
-                cost.equals(that.cost) &&
                 character.equals(that.character) &&
                 birthDate.equals(that.birthDate);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s, Breed: %s, Cost: %.2f, Character: %s, BirthDate: %s",
+                name, breed, cost, character, birthDate);
+    }
 }
+
